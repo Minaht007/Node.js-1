@@ -1,16 +1,29 @@
-const contact = require("./contacts");
+const contact = require("./contacts.js");
 
-const сontacts = async ({ name, id, email, phone }) => {
-  switch (сontacts) {
+const сontactsData = async ({ action, name, id, email, phone }) => {
+  switch (action) {
     case "read":
       const allContact = await contact.getContacts();
-      return allContact || null;
+      console.log(allContact);
     case "contactName":
+      const contactName = await contact.getContacts(name);
+      console.log(contactName);
     case "contactsId":
-      const contactId = await contacts.getById(id);
-      return contactId || null;
-    default:
-      console.log("error");
+      const contactId = await contact.getById(id);
+      console.log(contactId);
+    case "contactsPhone":
+      const contactsPhone = await contact.getByPhone(phone);
+      console.log(contactsPhone);
+    case "contactsEmail":
+      const contactsEmail = await contact.getByEmail(email);
+      console.log(contactsEmail);
+    // default:
+    //   console.log("error");
   }
 };
-сontacts({ contact: "allContact", contact: "contactId" });
+сontactsData({
+  action: "allContact",
+  contactName: "name",
+  contactsPhone: "phone",
+  contactsEmail: "email",
+}).then((result) => console.log(result));

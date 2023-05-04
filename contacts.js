@@ -15,7 +15,21 @@ const getById = async (id) => {
   return result;
 };
 const getByName = async (name) => {
-  const contacts = await getContacts().thyen((result = contact.name === name));
+  const contacts = await getContacts();
+  const result = contacts.find((item) => item.name === name);
+  return result;
 };
 
-module.exports = { getContacts, getById };
+const getByEmail = async (email) => {
+  const contacts = await getContacts();
+  const result = contacts.find((item) => item.email === email);
+  return result;
+};
+
+const getByPhone = async (phone) => {
+  const contacts = await getContacts();
+  const result = contacts.find((item) => item.phone === phone);
+  return result;
+};
+
+module.exports = { getContacts, getById, getByName, getByPhone, getByEmail };
