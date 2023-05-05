@@ -28,8 +28,9 @@ const invokeAction = async ({ action, name, id, email, phone }) => {
     case "add":
       const newContact = await contact.addContact({ name, phone, email });
       return console.log(newContact);
-    case "deletContactById":
-      const deletContact = await contact.removeContact(id);
+      break;
+    case "remove":
+      const deletContact = await contact.remove(id);
       return console.log(deletContact);
       break;
     default:
@@ -42,7 +43,7 @@ invokeAction({
   contactsPhone: "phone",
   contactsEmail: "email",
   add: "newContact",
-  deletContactById: "id",
+  remove: "id",
 }).then((result) => console.log(result));
 
 // метод yarn
@@ -57,7 +58,7 @@ program
   .option("--action. <type>")
   .option("--name. <type>")
   .option("--id. <type>")
-  .option("--emeai. <type>")
+  .option("--emeal. <type>")
   .option("--phone. <type>");
 
 const option = program.opts();
